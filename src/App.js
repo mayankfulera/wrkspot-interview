@@ -73,9 +73,17 @@ function App() {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    const temp = countries.filter((item) =>
-      item.name.toLowerCase().includes(e.target.value.toLowerCase()),
-    );
+    let temp = [];
+    temp = countries.filter((item) => {
+      if (populationFilter && populationFilter !== 'Population') {
+        return (
+          item.name.toLowerCase().includes(e.target.value.toLowerCase()) &&
+          item.population < checkPopulation(populationFilter)
+        );
+      } else {
+        return item.name.toLowerCase().includes(e.target.value.toLowerCase());
+      }
+    });
     setFilteredData(temp);
   };
 
@@ -95,9 +103,17 @@ function App() {
   const handlePopulationChange = (e) => {
     setPopulationFilter(e.target.value);
     if (e.target.value !== 'Population') {
-      const temp = countries.filter(
-        (item) => item.population < checkPopulation(e.target.value),
-      );
+      const temp = countries.filter((item) => {
+        if (search) {
+          return (
+            item.population < checkPopulation(e.target.value) &&
+            item.name.toLowerCase().includes(e.target.value.toLowerCase())
+          );
+        } else {
+          return item.population < checkPopulation(e.target.value);
+        }
+      });
+
       setFilteredData(temp);
     } else {
       setFilteredData(countries);
@@ -106,6 +122,8 @@ function App() {
 
   const clearData = () => {
     setFilteredData(countries);
+    setPopulationFilter('');
+    setSearch('');
   };
 
   return (
