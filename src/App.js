@@ -107,7 +107,7 @@ function App() {
         if (search) {
           return (
             item.population < checkPopulation(e.target.value) &&
-            item.name.toLowerCase().includes(e.target.value.toLowerCase())
+            item.name.toLowerCase().includes(search.toLowerCase())
           );
         } else {
           return item.population < checkPopulation(e.target.value);
