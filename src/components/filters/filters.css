@@ -1,0 +1,41 @@
+button {
+  background-color: blueviolet;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.clear {
+  color: blueviolet;
+  cursor: pointer;
+}
+
+.filterWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.filtersAll {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input-wrapper {
+  height: 40px;
+  display: flex;
+}
+input {
+  width: 200px;
+}
+
+select {
+  width: 200px;
+}
